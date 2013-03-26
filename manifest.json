@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "Tab-less",
+  "description": "Disables tabs for tab-less browsing.",
+  "version": "0.2",
+
+  "background": {
+    "scripts": ["detach_new_tabs.js", "override_commands.js"],
+    "persistent": false
+  },
+
+  "commands": {
+    "new-tab-override": {
+      "suggested_key": {
+          "default": "Ctrl+T"
+      },
+      "description": "Overrides the default new tab key combination to open a new window instead"
+    }
+  },
+
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
