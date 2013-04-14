@@ -3,7 +3,7 @@
 
   "name": "Tab-less",
   "description": "Disables tabs for tab-less browsing.",
-  "version": "0.3.0",
+  "version": "0.3.1",
 
   "background": {
     "scripts": ["detach_new_tabs.js", "override_commands.js", "close_windows_browser_action.js"],
