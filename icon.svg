@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.317928"
-     inkscape:cx="103.94703"
-     inkscape:cy="87.971571"
+     inkscape:zoom="1"
+     inkscape:cx="95.065288"
+     inkscape:cy="51.413013"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -41,7 +41,13 @@
      gridtolerance="10">
     <inkscape:grid
        type="xygrid"
-       id="grid3010" />
+       id="grid3010"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="0.25px"
+       spacingy="0.25px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -51,7 +57,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -96,14 +102,14 @@
     <text
        xml:space="preserve"
        style="font-size:96px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="90.278503"
-       y="1014.0166"
+       x="75"
+       y="1049.2822"
        id="text3773"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3775"
-         x="90.278503"
-         y="1014.0166"
-         style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:super;font-family:Kreon;-inkscape-font-specification:Kreon">-</tspan></text>
+         x="75"
+         y="1049.2822"
+         style="font-size:80px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;baseline-shift:super;font-family:Kreon;-inkscape-font-specification:Kreon">-</tspan></text>
   </g>
 </svg>
