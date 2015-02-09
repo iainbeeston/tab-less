@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-    <title>icon</title>
+    <title>icon19</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
@@ -18,13 +18,13 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icon" sketch:type="MSLayerGroup" transform="translate(9.000000, 0.000000)">
             <g id="layer1" transform="translate(0.000000, 0.637820)">
-                <path d="M109.827129,63.2942 C109.827129,93.4153296 85.4091276,117.833331 55.287998,117.833331 C25.1668684,117.833331 0.7488674,93.4153296 0.7488674,63.2942 C0.7488674,33.1730704 25.1668684,8.7550694 55.287998,8.7550694 C85.4091276,8.7550694 109.827129,33.1730704 109.827129,63.2942 L109.827129,63.2942 Z" id="circle" stroke="#5D5D5D" stroke-width="5.422" opacity="0.8" filter="url(#filter-1)" sketch:type="MSShapeGroup"></path>
-                <g id="text" transform="translate(23.000000, 0.282200)" font-family="Helvetica" fill="#5D5D5D" sketch:type="MSTextLayer" font-weight="normal">
-                    <text id="minus" font-size="80">
-                        <tspan x="41" y="82.2822">-</tspan>
+                <path d="M109.827129,63.2942 C109.827129,93.4153296 85.4091276,117.833331 55.287998,117.833331 C25.1668684,117.833331 0.7488674,93.4153296 0.7488674,63.2942 C0.7488674,33.1730704 25.1668684,8.7550694 55.287998,8.7550694 C85.4091276,8.7550694 109.827129,33.1730704 109.827129,63.2942 L109.827129,63.2942 Z" id="circle" stroke-opacity="0.8" stroke="#505050" stroke-width="5.422" filter="url(#filter-1)" sketch:type="MSShapeGroup"></path>
+                <g id="text" transform="translate(23.000000, 0.282200)" font-family="Helvetica" fill="#505050" sketch:type="MSTextLayer" font-weight="normal">
+                    <text id="-" font-size="80">
+                        <tspan x="51.075996" y="78.3062" fill="#5D5D5D">-</tspan>
                     </text>
-                    <text id="letter" font-size="104">
-                        <tspan x="0.575996" y="101.3062">T</tspan>
+                    <text id="T" font-size="104">
+                        <tspan x="0.575996" y="101.3062" fill="#8B8B8B">T</tspan>
                     </text>
                 </g>
             </g>
