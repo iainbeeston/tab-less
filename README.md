@@ -11,7 +11,9 @@ FAQs
 * If you don't like tabs, then just don't use them! You don't need an extension for that
   * Chrome forces tabs on you by default. It does not provide an option to default to using windows rather than tabs. This extension overrides that behaviour to open windows instead, to make it seamless for users like myself.
 * Why should I use Tab-less rather than New Tab, New Window?
-  * Tab-less does not require any access to your browsing history at all (most extensions require access to your browsing history or the current page you're viewing). It's designed to be as light-weight and simplistic as possible. There's no magic either, it just moves tabs to a new window, whenever they're opened (using the default settings for a new window, whatever they are in chrome).
+  * Tab-less does not require any access to your browsing history at all (most extensions require access to your browsing history or the current page you're viewing).
+  * It's designed to be as light-weight and simplistic as possible.
+  * There's no magic, it just moves tabs to a new window, whenever they're opened (using the default settings for a new window, whatever they are in chrome).
 
 Contributing
 ------------
