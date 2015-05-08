@@ -18,13 +18,13 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icon" sketch:type="MSLayerGroup" transform="translate(9.000000, 0.000000)">
             <g id="layer1" transform="translate(0.000000, 0.637820)">
-                <path d="M109.827129,63.2942 C109.827129,93.4153296 85.4091276,117.833331 55.287998,117.833331 C25.1668684,117.833331 0.7488674,93.4153296 0.7488674,63.2942 C0.7488674,33.1730704 25.1668684,8.7550694 55.287998,8.7550694 C85.4091276,8.7550694 109.827129,33.1730704 109.827129,63.2942 L109.827129,63.2942 Z" id="circle" stroke-opacity="0.8" stroke="#505050" stroke-width="5.422" filter="url(#filter-1)" sketch:type="MSShapeGroup"></path>
-                <g id="text" transform="translate(23.000000, 0.282200)" font-family="Helvetica" fill="#505050" sketch:type="MSTextLayer" font-weight="normal">
-                    <text id="-" font-size="80">
-                        <tspan x="51.075996" y="78.3062" fill="#5D5D5D">-</tspan>
+                <path d="M109.827129,63.2942 C109.827129,93.4153296 85.4091276,117.833331 55.287998,117.833331 C25.1668684,117.833331 0.7488674,93.4153296 0.7488674,63.2942 C0.7488674,33.1730704 25.1668684,8.7550694 55.287998,8.7550694 C85.4091276,8.7550694 109.827129,33.1730704 109.827129,63.2942 L109.827129,63.2942 Z" id="circle" stroke-opacity="0.8" stroke="#707070" stroke-width="7" filter="url(#filter-1)" sketch:type="MSShapeGroup"></path>
+                <g id="text" transform="translate(23.000000, 0.282200)" font-family="Helvetica" fill="#8B8B8B" sketch:type="MSTextLayer" font-weight="normal">
+                    <text id="-" font-size="96">
+                        <tspan x="46.075996" y="88.3062" fill="#8B8B8B">-</tspan>
                     </text>
                     <text id="T" font-size="104">
-                        <tspan x="0.575996" y="101.3062" fill="#8B8B8B">T</tspan>
+                        <tspan x="0.575996" y="105.3062" fill="#8B8B8B">T</tspan>
                     </text>
                 </g>
             </g>
