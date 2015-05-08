@@ -154,7 +154,7 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
+//    css: ['<%= config.dist %>/styles/{,*/}*.css']
     },
 
     // The following *-min tasks produce minifies files in the dist folder
@@ -365,7 +365,7 @@ module.exports = function (grunt) {
       'jshint',
       'mkdir:images',
       'concurrent:icons',
-/*    'concurrent:chrome', */
+//    'concurrent:chrome',
       'connect:chrome',
       'watch'
     ]);
@@ -383,8 +383,8 @@ module.exports = function (grunt) {
     'mkdir:images',
     'concurrent:icons',
     'imagemin',
-/*  'concurrent:dist', */
-/*  'cssmin', */
+//  'concurrent:dist',
+//  'cssmin',
     'concat',
     'uglify',
     'copy',
