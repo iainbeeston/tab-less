@@ -1,4 +1,5 @@
 dist/
 node_modules/
 package/
+app/bower_components/
 test/bower_components/
