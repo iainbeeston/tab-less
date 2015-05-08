@@ -1,0 +1,11 @@
+{
+  "appName": {
+    "message": "Tab-less"
+  },
+  "appDescription": {
+    "message": "Disables tabs for tab-less browsing"
+  },
+  "browserActionTitle": {
+    "message": "Close other windows"
+  }
+}
