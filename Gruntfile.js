@@ -180,6 +180,65 @@ module.exports = function (grunt) {
       }
     },
 
+    mkdir: {
+      images: {
+        options: {
+          create: ['<%= config.dist %>/images']
+        }
+      }
+    },
+
+    'imagemagick-convert': {
+      icon19: {
+        args: [
+          '-background',
+          'none',
+          '-resize',
+          '19x19',
+          '-verbose',
+          '<%= config.app %>/images/icon.svg',
+          '<%= config.dist %>/images/icon-19.png'
+        ],
+        fatals: true
+      },
+      icon38: {
+        args: [
+          '-background',
+          'none',
+          '-resize',
+          '38x38',
+          '-verbose',
+          '<%= config.app %>/images/icon.svg',
+          '<%= config.dist %>/images/icon-38.png'
+        ],
+        fatals: true
+      },
+      icon48: {
+        args: [
+          '-background',
+          'none',
+          '-resize',
+          '48x48',
+          '-verbose',
+          '<%= config.app %>/images/icon.svg',
+          '<%= config.dist %>/images/icon-48.png'
+        ],
+        fatals: true
+      },
+      icon128: {
+        args: [
+          '-background',
+          'none',
+          '-resize',
+          '128x128',
+          '-verbose',
+          '<%= config.app %>/images/icon.svg',
+          '<%= config.dist %>/images/icon-128.png'
+        ],
+        fatals: true
+      }
+    },
+
     htmlmin: {
       dist: {
         options: {
@@ -255,6 +314,12 @@ module.exports = function (grunt) {
         'svgmin'
       ],
       test: [
+      ],
+      icons: [
+        'imagemagick-convert:icon19',
+        'imagemagick-convert:icon38',
+        'imagemagick-convert:icon48',
+        'imagemagick-convert:icon128'
       ]
     },
 
@@ -298,7 +363,9 @@ module.exports = function (grunt) {
   grunt.registerTask('debug', function () {
     grunt.task.run([
       'jshint',
-      'concurrent:chrome',
+      'mkdir:images',
+      'concurrent:icons',
+/*    'concurrent:chrome', */
       'connect:chrome',
       'watch'
     ]);
@@ -313,8 +380,11 @@ module.exports = function (grunt) {
     'clean:dist',
     'chromeManifest:dist',
     'useminPrepare',
-    'concurrent:dist',
-/*    'cssmin', */
+    'mkdir:images',
+    'concurrent:icons',
+    'imagemin',
+/*  'concurrent:dist', */
+/*  'cssmin', */
     'concat',
     'uglify',
     'copy',

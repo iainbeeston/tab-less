@@ -3,6 +3,7 @@
   "description": "Disables tabs for tab-less browsing",
   "version": "0.4.0",
   "license": "LGPL-3.0",
+
   "repository" : {
     "type" : "git",
     "url" : "git://github.com/iainbeeston/tab-less.git"
@@ -29,7 +30,9 @@
     "time-grunt": "~0.3.1",
     "jshint-stylish": "~0.1.5",
     "grunt-chrome-manifest": "~0.2.0",
-    "grunt-contrib-compress": "~0.9.1"
+    "grunt-contrib-compress": "~0.9.1",
+    "grunt-imagemagick": "~0.1.5",
+    "grunt-mkdir": "~>0.1.2"
   },
   "engines": {
     "node": ">=0.8.0"
