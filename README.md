@@ -1,6 +1,9 @@
 Tab-less
 ========
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
+
 This extension disables tabbed browsing in Google Chrome. Rather than opening new tabs, Chrome will open windows wherever possible.
 
 FAQs
