@@ -169,6 +169,8 @@ module.exports = function (grunt) {
     'imagemagick-convert': {
       icon19: {
         args: [
+          '-density',
+          '2000',
           '-background',
           'none',
           '-resize',
@@ -181,6 +183,8 @@ module.exports = function (grunt) {
       },
       icon38: {
         args: [
+          '-density',
+          '2000',
           '-background',
           'none',
           '-resize',
@@ -193,6 +197,8 @@ module.exports = function (grunt) {
       },
       icon48: {
         args: [
+          '-density',
+          '2000',
           '-background',
           'none',
           '-resize',
@@ -205,6 +211,8 @@ module.exports = function (grunt) {
       },
       icon128: {
         args: [
+          '-density',
+          '2000',
           '-background',
           'none',
           '-resize',
@@ -212,6 +220,20 @@ module.exports = function (grunt) {
           '-verbose',
           '<%= config.app %>/images/icon.svg',
           '<%= config.dist %>/images/icon-128.png'
+        ],
+        fatals: true
+      },
+      promoTile: {
+        args: [
+          '-density',
+          '2000',
+          '-background',
+          'white',
+          '-resize',
+          '420x280^',
+          '-verbose',
+          '<%= config.app %>/images/promo_tile.svg',
+          '<%= config.dist %>/images/promo_tile.png'
         ],
         fatals: true
       }
@@ -297,7 +319,8 @@ module.exports = function (grunt) {
         'imagemagick-convert:icon19',
         'imagemagick-convert:icon38',
         'imagemagick-convert:icon48',
-        'imagemagick-convert:icon128'
+        'imagemagick-convert:icon128',
+        'imagemagick-convert:promoTile',
       ]
     },
 

@@ -39,6 +39,7 @@
     "npm": "6.x"
   },
   "scripts": {
+    "build": "grunt build",
     "lint": "grunt lint",
     "test": "grunt test"
   }
