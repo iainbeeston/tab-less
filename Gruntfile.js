@@ -28,10 +28,6 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['bowerInstall']
-      },
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
         tasks: ['jshint'],
@@ -78,15 +74,6 @@ module.exports = function (grunt) {
           ]
         }
       },
-      test: {
-        options: {
-          open: false,
-          base: [
-            'test',
-            '<%= config.app %>'
-          ]
-        }
-      }
     },
 
     // Empties folders to start fresh
@@ -108,7 +95,8 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+        reporterOutput: ''
       },
       all: [
         'Gruntfile.js',
@@ -117,21 +105,9 @@ module.exports = function (grunt) {
         'test/spec/{,*/}*.js'
       ]
     },
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://localhost:<%= connect.options.port %>/index.html']
-        }
-      }
-    },
-
-    // Automatically inject Bower components into the HTML file
-    bowerInstall: {
-      app: {
-        src: [
-          '<%= config.app %>/*.html'
-        ]
+    mochaTest: {
+      test: {
+        src: ['test/**/*.js']
       }
     },
 
@@ -372,8 +348,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
-    'connect:test',
-    'mocha'
+    'mochaTest'
   ]);
 
   grunt.registerTask('build', [
