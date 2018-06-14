@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 // Generated on 2015-05-08 using generator-chrome-extension 0.3.1
 'use strict';
 
@@ -92,19 +94,19 @@ module.exports = function (grunt) {
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
+    eslint: {
       options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish'),
-        reporterOutput: ''
+        ignorePattern: [
+          '<%= config.app %>/scripts/chromereload.js'
+        ]
       },
-      all: [
+      target: [
         'Gruntfile.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
+        '<%= config.app %>/scripts',
+        'test/{,*/}*.js'
       ]
     },
+
     mochaTest: {
       test: {
         src: ['test/**/*.js']
@@ -130,7 +132,7 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
-//    css: ['<%= config.dist %>/styles/{,*/}*.css']
+      //  css: ['<%= config.dist %>/styles/{,*/}*.css']
     },
 
     // The following *-min tasks produce minifies files in the dist folder
@@ -341,14 +343,14 @@ module.exports = function (grunt) {
       'lint',
       'mkdir:images',
       'concurrent:icons',
-//    'concurrent:chrome',
+      //  'concurrent:chrome',
       'connect:chrome',
       'watch'
     ]);
   });
 
   grunt.registerTask('lint', [
-    'jshint'
+    'eslint'
   ]);
 
   grunt.registerTask('test', [
