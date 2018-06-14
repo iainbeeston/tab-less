@@ -1,6 +1,7 @@
 Tab-less
 ========
 
+[![CircleCI](https://img.shields.io/circleci/project/github/iainbeeston/tab-less/master.svg)]()
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
 

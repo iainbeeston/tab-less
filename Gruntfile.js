@@ -30,7 +30,7 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
+        tasks: ['lint'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -338,7 +338,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('debug', function () {
     grunt.task.run([
-      'jshint',
+      'lint',
       'mkdir:images',
       'concurrent:icons',
 //    'concurrent:chrome',
@@ -346,6 +346,10 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+  grunt.registerTask('lint', [
+    'jshint'
+  ]);
 
   grunt.registerTask('test', [
     'mochaTest'
@@ -358,8 +362,8 @@ module.exports = function (grunt) {
     'mkdir:images',
     'concurrent:icons',
     'imagemin',
-//  'concurrent:dist',
-//  'cssmin',
+    //  'concurrent:dist',
+    //  'cssmin',
     'concat',
     'uglify',
     'copy',
@@ -368,7 +372,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
+    'lint',
     'test',
     'build'
   ]);
