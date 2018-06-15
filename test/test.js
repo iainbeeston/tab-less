@@ -1,4 +1,4 @@
-/* global describe, it */
+/* eslint-env node, mocha */
 
 (function () {
   'use strict';
