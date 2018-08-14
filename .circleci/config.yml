@@ -24,6 +24,9 @@ jobs:
        - run:
            command: npm test
 
+       - run:
+           command: npm run build
+
 experimental:
   notify:
     branches:
