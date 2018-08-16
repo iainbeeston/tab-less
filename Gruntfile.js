@@ -20,7 +20,8 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    test: 'test',
   };
 
   grunt.initConfig({
@@ -31,7 +32,10 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
+        files: [
+          '<%= config.app %>/scripts/{,*/}*.js',
+          '<%= config.test %>/{,*/}*.js'
+        ],
         tasks: ['lint'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -103,13 +107,13 @@ module.exports = function (grunt) {
       target: [
         'Gruntfile.js',
         '<%= config.app %>/scripts',
-        'test/{,*/}*.js'
+        '<%= config.test %>/{,*/}*.js'
       ]
     },
 
     mochaTest: {
       test: {
-        src: ['test/**/*.js']
+        src: ['<%= config.test %>/**/*.js']
       }
     },
 
