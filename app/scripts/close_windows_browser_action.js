@@ -2,12 +2,11 @@
 
 var closeOtherWindows = function(tab) {
   chrome.windows.getAll(function(windows) {
-    for (var i=0, windowsLength=windows.length; i < windowsLength; i++) {
-      var window = windows[i];
+    windows.forEach(function(window) {
       if (window.id !== tab.windowId) {
         chrome.windows.remove(window.id);
       }
-    }
+    })
   });
 };
 

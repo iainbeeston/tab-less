@@ -1,16 +1,19 @@
 'use strict';
 
 var detachTab = function(tab) {
-  // ignore the first tab in each window
-  if (tab.index === 0) {
+  if (tab.index === 0 || tab.pinned) {
     return;
   }
 
   chrome.windows.get(tab.windowId, function(oldWindow) {
-    chrome.windows.create({'tabId': tab.id, 'incognito': oldWindow.incognito}, function(newWindow) {
-      chrome.windows.update(newWindow.id, {'state': oldWindow.state});
-    });
+    chrome.windows.create({'tabId': tab.id, 'incognito': tab.incognito, 'type': oldWindow.state});
   });
 };
+
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.tabs.query({}, function(tabs) {
+    tabs.forEach(detachTab);
+  });
+});
 
 chrome.tabs.onCreated.addListener(detachTab);
