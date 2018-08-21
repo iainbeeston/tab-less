@@ -10,8 +10,9 @@
   "default_locale": "en",
   "background": {
     "scripts": [
+      "scripts/close_windows_browser_action.js",
       "scripts/detach_new_tabs.js",
-      "scripts/close_windows_browser_action.js"
+      "scripts/window_count_badge.js"
     ],
     "persistent": false
   },
