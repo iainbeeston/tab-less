@@ -3,9 +3,9 @@
     <g transform="scale(1.25) translate(6, 52)">
         <!-- contents of icon.svg -->
         <circle cx="64" cy="64" r="56" stroke="#575757" stroke-width="12" fill="none"/>
-        <line x1="32" x2="96" y1="40" y2="40" stroke="#575757" stroke-width="11" />
-        <line x1="64" x2="64" y1="40" y2="104" stroke="#575757" stroke-width="11" />
-        <line x1="80" x2="104" y1="66" y2="66" stroke="#575757" stroke-width="11" />
+        <line x1="40" x2="88" y1="48" y2="48" stroke="#575757" stroke-width="12" />
+        <line x1="64" x2="64" y1="48" y2="96" stroke="#575757" stroke-width="12" />
+        <line x1="80" x2="100" y1="68" y2="68" stroke="#575757" stroke-width="12" />
     </g>
     <text fill="#575757" x="162.5" y="195" font-family="Helvetica-Light" font-size="64" font-weight="300">AB-LESS</text>
 </svg>
