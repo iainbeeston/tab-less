@@ -24,5 +24,23 @@
       chrome.browserAction.onClicked.dispatch({windowId: 3})
       sinon.assert.notCalled(chrome.windows.remove)
     });
+
+    it('does not close minimised windows', function() {
+      chrome.windows.getAll.yields([{id: 4, state: 'minimized'}])
+      chrome.browserAction.onClicked.dispatch({})
+      sinon.assert.notCalled(chrome.windows.remove)
+    });
+
+    it('does not close full screen windows', function() {
+      chrome.windows.getAll.yields([{id: 5, state: 'fullscreen'}])
+      chrome.browserAction.onClicked.dispatch({})
+      sinon.assert.notCalled(chrome.windows.remove)
+    });
+
+    it('does not close maximised windows', function() {
+      chrome.windows.getAll.yields([{id: 6, state: 'maximized'}])
+      chrome.browserAction.onClicked.dispatch({})
+      sinon.assert.notCalled(chrome.windows.remove)
+    });
   });
 })();
