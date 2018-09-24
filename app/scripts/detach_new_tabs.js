@@ -6,7 +6,7 @@ var detachTab = function(tab) {
   }
 
   chrome.windows.get(tab.windowId, function(oldWindow) {
-    chrome.windows.create({'tabId': tab.id, 'incognito': tab.incognito, 'type': oldWindow.state});
+    chrome.windows.create({'tabId': tab.id, 'incognito': tab.incognito, 'state': oldWindow.state});
   });
 };
 

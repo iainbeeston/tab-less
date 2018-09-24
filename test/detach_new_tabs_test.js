@@ -36,10 +36,10 @@
       sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('incognito', true));
     });
 
-    it('gets the type from the original window and sets it on the new window', function() {
+    it('gets the state from the original window and sets it on the new window', function() {
       chrome.windows.get.withArgs(12345).yields({state: 'minimized'});
       chrome.tabs.onCreated.dispatch({windowId: 12345});
-      sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('type', 'minimized'));
+      sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('state', 'minimized'));
     });
   });
 
