@@ -1,6 +1,6 @@
 'use strict';
 
-var CLOSABLE_STATES = [undefined, 'normal']
+var CLOSABLE_STATES = [undefined, 'normal'];
 
 var closeOtherWindows = function(tab) {
   chrome.windows.getAll(function(windows) {
@@ -8,7 +8,7 @@ var closeOtherWindows = function(tab) {
       if (window.id !== tab.windowId && CLOSABLE_STATES.includes(window.state)) {
         chrome.windows.remove(window.id);
       }
-    })
+    });
   });
 };
 

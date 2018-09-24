@@ -9,7 +9,7 @@
   afterEach(function() {
     chrome.windows.getAll.flush();
     chrome.browserAction.setBadgeText.flush();
-  })
+  });
 
   describe('when a window is opened', function() {
     it('sets the badge text to 1 when there is one window', function() {
