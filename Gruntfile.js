@@ -21,6 +21,7 @@ module.exports = function (grunt) {
   var config = {
     app: 'app',
     dist: 'dist',
+    promo: 'promo',
     test: 'test',
   };
 
@@ -167,6 +168,11 @@ module.exports = function (grunt) {
         options: {
           create: ['<%= config.dist %>/images']
         }
+      },
+      promo: {
+        options: {
+          create: ['<%= config.promo %>']
+        }
       }
     },
 
@@ -227,17 +233,45 @@ module.exports = function (grunt) {
         ],
         fatals: true
       },
-      promoTile: {
+      promoTileSmall: {
         args: [
           '-density',
           '2000',
           '-background',
           'white',
           '-resize',
-          '420x280^',
+          '420x280',
           '-verbose',
           '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.dist %>/images/promo_tile.png'
+          '<%= config.promo %>/promo_tile_small.png'
+        ],
+        fatals: true
+      },
+      promoTileLarge: {
+        args: [
+          '-density',
+          '2000',
+          '-background',
+          'white',
+          '-resize',
+          '920x680',
+          '-verbose',
+          '<%= config.app %>/images/promo_tile.svg',
+          '<%= config.promo %>/promo_tile_large.png'
+        ],
+        fatals: true
+      },
+      promoTileMarquee: {
+        args: [
+          '-density',
+          '2000',
+          '-background',
+          'white',
+          '-resize',
+          '1400x890',
+          '-verbose',
+          '<%= config.app %>/images/promo_tile.svg',
+          '<%= config.promo %>/promo_tile_marquee.png'
         ],
         fatals: true
       }
@@ -323,8 +357,12 @@ module.exports = function (grunt) {
         'imagemagick-convert:icon19',
         'imagemagick-convert:icon38',
         'imagemagick-convert:icon48',
-        'imagemagick-convert:icon128',
-        'imagemagick-convert:promoTile',
+        'imagemagick-convert:icon128'
+      ],
+      promo: [
+        'imagemagick-convert:promoTileSmall',
+        'imagemagick-convert:promoTileLarge',
+        'imagemagick-convert:promoTileMarquee'
       ]
     },
 
@@ -398,6 +436,12 @@ module.exports = function (grunt) {
     'copy',
     'usemin',
     'compress'
+  ]);
+
+  grunt.registerTask('promo-tiles', [
+    'mkdir:promo',
+    'concurrent:promo',
+    'imagemin',
   ]);
 
   grunt.registerTask('default', [
