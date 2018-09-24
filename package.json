@@ -43,7 +43,7 @@
   "scripts": {
     "build": "grunt build",
     "lint": "grunt lint",
-    "promo-tiles": "grunt promo-tiles",
+    "promo": "grunt promo",
     "test": "grunt test"
   }
 }

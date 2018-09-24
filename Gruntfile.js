@@ -171,7 +171,7 @@ module.exports = function (grunt) {
       },
       promo: {
         options: {
-          create: ['<%= config.promo %>']
+          create: ['<%= config.promo %>/chrome', '<%= config.promo %>/firefox']
         }
       }
     },
@@ -219,6 +219,20 @@ module.exports = function (grunt) {
         ],
         fatals: true
       },
+      icon64: {
+        args: [
+          '-density',
+          '2000',
+          '-background',
+          'none',
+          '-resize',
+          '64x64',
+          '-verbose',
+          '<%= config.app %>/images/icon.svg',
+          '<%= config.promo %>/firefox/icon-64.png'
+        ],
+        fatals: true
+      },
       icon128: {
         args: [
           '-density',
@@ -243,7 +257,7 @@ module.exports = function (grunt) {
           '420x280',
           '-verbose',
           '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.promo %>/promo_tile_small.png'
+          '<%= config.promo %>/chrome/promo_tile_small.png'
         ],
         fatals: true
       },
@@ -257,7 +271,7 @@ module.exports = function (grunt) {
           '920x680',
           '-verbose',
           '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.promo %>/promo_tile_large.png'
+          '<%= config.promo %>/chrome/promo_tile_large.png'
         ],
         fatals: true
       },
@@ -271,7 +285,7 @@ module.exports = function (grunt) {
           '1400x890',
           '-verbose',
           '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.promo %>/promo_tile_marquee.png'
+          '<%= config.promo %>/chrome/promo_tile_marquee.png'
         ],
         fatals: true
       }
@@ -362,7 +376,8 @@ module.exports = function (grunt) {
       promo: [
         'imagemagick-convert:promoTileSmall',
         'imagemagick-convert:promoTileLarge',
-        'imagemagick-convert:promoTileMarquee'
+        'imagemagick-convert:promoTileMarquee',
+        'imagemagick-convert:icon64',
       ]
     },
 
@@ -438,10 +453,9 @@ module.exports = function (grunt) {
     'compress'
   ]);
 
-  grunt.registerTask('promo-tiles', [
+  grunt.registerTask('promo', [
     'mkdir:promo',
     'concurrent:promo',
-    'imagemin',
   ]);
 
   grunt.registerTask('default', [
