@@ -2,9 +2,10 @@ Tab-less
 ========
 
 [![CircleCI](https://img.shields.io/circleci/project/github/iainbeeston/tab-less/master.svg)]()
-[![Mozilla Add-on](https://img.shields.io/amo/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/nimelepbpejjlbmoobocpfnjhihnpked.svg)]()
+[![Mozilla Add-on](https://img.shields.io/amo/v/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
+[![Mozilla Add-on](https://img.shields.io/amo/stars/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mdndkociaebjkggmhnemegoegnbfbgoo.svg)](https://chrome.google.com/webstore/detail/tab-less/mdndkociaebjkggmhnemegoegnbfbgoo)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/mdndkociaebjkggmhnemegoegnbfbgoo.svg)](https://chrome.google.com/webstore/detail/tab-less/mdndkociaebjkggmhnemegoegnbfbgoo)
 
 This extension disables tabbed browsing. Rather than opening new tabs, your browser will open windows wherever possible.
 
