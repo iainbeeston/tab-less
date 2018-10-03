@@ -9,6 +9,59 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+function icon(args) {
+  return {
+    args: [
+      '-density',
+      '2000',
+      '-background',
+      'none',
+      '-resize',
+      args.size,
+      '-verbose',
+      args.input,
+      args.output,
+    ],
+    fatals: true
+  };
+}
+
+function tempPromo(args) {
+  return {
+    args: [
+      '-density',
+      '2000',
+      '-background',
+      'white',
+      '-resize',
+      args.size,
+      '-verbose',
+      args.input,
+      args.output,
+    ],
+    fatals: true
+  };
+}
+
+function finalPromo(args) {
+  return {
+    args: [
+      '-background',
+      'white',
+      '-resize',
+      args.size,
+      '-gravity',
+      'center',
+      '-extent',
+      args.size,
+      '-verbose',
+      args.input,
+      args.output
+    ],
+    fatals: true
+  };
+}
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -95,6 +148,13 @@ module.exports = function (grunt) {
             '!<%= config.dist %>/.git*'
           ]
         }]
+      },
+      promo: {
+        files: [{
+          src: [
+            '<%= config.promo %>/temp/*'
+          ]
+        }]
       }
     },
 
@@ -171,124 +231,67 @@ module.exports = function (grunt) {
       },
       promo: {
         options: {
-          create: ['<%= config.promo %>/chrome', '<%= config.promo %>/firefox']
+          create: ['<%= config.promo %>/chrome', '<%= config.promo %>/firefox', '<%= config.promo %>/temp']
         }
       }
     },
 
     'imagemagick-convert': {
-      icon19: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'none',
-          '-resize',
-          '19x19',
-          '-verbose',
-          '<%= config.app %>/images/icon.svg',
-          '<%= config.dist %>/images/icon-19.png'
-        ],
-        fatals: true
-      },
-      icon38: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'none',
-          '-resize',
-          '38x38',
-          '-verbose',
-          '<%= config.app %>/images/icon.svg',
-          '<%= config.dist %>/images/icon-38.png'
-        ],
-        fatals: true
-      },
-      icon48: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'none',
-          '-resize',
-          '48x48',
-          '-verbose',
-          '<%= config.app %>/images/icon.svg',
-          '<%= config.dist %>/images/icon-48.png'
-        ],
-        fatals: true
-      },
-      icon64: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'none',
-          '-resize',
-          '64x64',
-          '-verbose',
-          '<%= config.app %>/images/icon.svg',
-          '<%= config.promo %>/firefox/icon-64.png'
-        ],
-        fatals: true
-      },
-      icon128: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'none',
-          '-resize',
-          '128x128',
-          '-verbose',
-          '<%= config.app %>/images/icon.svg',
-          '<%= config.dist %>/images/icon-128.png'
-        ],
-        fatals: true
-      },
-      promoTileSmall: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'white',
-          '-resize',
-          '420x280',
-          '-verbose',
-          '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.promo %>/chrome/promo_tile_small.png'
-        ],
-        fatals: true
-      },
-      promoTileLarge: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'white',
-          '-resize',
-          '920x680',
-          '-verbose',
-          '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.promo %>/chrome/promo_tile_large.png'
-        ],
-        fatals: true
-      },
-      promoTileMarquee: {
-        args: [
-          '-density',
-          '2000',
-          '-background',
-          'white',
-          '-resize',
-          '1400x890',
-          '-verbose',
-          '<%= config.app %>/images/promo_tile.svg',
-          '<%= config.promo %>/chrome/promo_tile_marquee.png'
-        ],
-        fatals: true
-      }
+      icon19: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-38.png',
+        size: '19x19',
+      }),
+      icon38: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-38.png',
+        size: '38x38',
+      }),
+      icon48: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-48.png',
+        size: '48x48',
+      }),
+      icon64: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-64.png',
+        size: '64x64',
+      }),
+      icon128: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-128.png',
+        size: '128x128',
+      }),
+      tempPromoTileSmall: tempPromo({
+        input: '<%= config.app %>/images/promo_tile.svg',
+        output: '<%= config.promo %>/temp/promo_tile_small.png',
+        size: '420x280',
+      }),
+      promoTileSmall: finalPromo({
+        input: '<%= config.promo %>/temp/promo_tile_small.png',
+        output: '<%= config.promo %>/chrome/promo_tile_small.png',
+        size: '420x280',
+      }),
+      tempPromoTileLarge: tempPromo({
+        input: '<%= config.app %>/images/promo_tile.svg',
+        output: '<%= config.promo %>/temp/promo_tile_large.png',
+        size: '920x680',
+      }),
+      promoTileLarge: finalPromo({
+        input: '<%= config.promo %>/temp/promo_tile_large.png',
+        output: '<%= config.promo %>/chrome/promo_tile_large.png',
+        size: '920x680',
+      }),
+      tempPromoTileMarquee: tempPromo({
+        input: '<%= config.app %>/images/promo_tile.svg',
+        output: '<%= config.promo %>/temp/promo_tile_marquee.png',
+        size: '1400x560',
+      }),
+      promoTileMarquee: finalPromo({
+        input: '<%= config.promo %>/temp/promo_tile_marquee.png',
+        output: '<%= config.promo %>/chrome/promo_tile_marquee.png',
+        size: '1400x560',
+      })
     },
 
     htmlmin: {
@@ -371,13 +374,18 @@ module.exports = function (grunt) {
         'imagemagick-convert:icon19',
         'imagemagick-convert:icon38',
         'imagemagick-convert:icon48',
+        'imagemagick-convert:icon64',
         'imagemagick-convert:icon128'
+      ],
+      promoTemp: [
+        'imagemagick-convert:tempPromoTileSmall',
+        'imagemagick-convert:tempPromoTileLarge',
+        'imagemagick-convert:tempPromoTileMarquee',
       ],
       promo: [
         'imagemagick-convert:promoTileSmall',
         'imagemagick-convert:promoTileLarge',
         'imagemagick-convert:promoTileMarquee',
-        'imagemagick-convert:icon64',
       ]
     },
 
@@ -454,7 +462,9 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('promo', [
+    'clean:promo',
     'mkdir:promo',
+    'concurrent:promoTemp',
     'concurrent:promo',
   ]);
 
