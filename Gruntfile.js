@@ -266,12 +266,12 @@ module.exports = function (grunt) {
       tempPromoTileSmall: tempPromo({
         input: '<%= config.app %>/images/promo_tile.svg',
         output: '<%= config.promo %>/temp/promo_tile_small.png',
-        size: '420x280',
+        size: '440x280',
       }),
       promoTileSmall: finalPromo({
         input: '<%= config.promo %>/temp/promo_tile_small.png',
         output: '<%= config.promo %>/chrome/promo_tile_small.png',
-        size: '420x280',
+        size: '440x280',
       }),
       tempPromoTileLarge: tempPromo({
         input: '<%= config.app %>/images/promo_tile.svg',
