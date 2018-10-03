@@ -335,13 +335,6 @@ module.exports = function (grunt) {
         enclose: {},
         mangle: false
       },
-      dist: {
-        files: {
-          '<%= config.dist %>/scripts/scripts.js': [
-            '<%= config.dist %>/scripts/scripts.js'
-          ]
-        }
-      }
     },
 
     // concat: {
