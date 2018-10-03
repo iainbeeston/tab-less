@@ -382,7 +382,6 @@ module.exports = function (grunt) {
         'imagemagick-convert:icon19',
         'imagemagick-convert:icon38',
         'imagemagick-convert:icon48',
-        'imagemagick-convert:icon64',
         'imagemagick-convert:icon128'
       ],
       promoTemp: [
@@ -391,6 +390,7 @@ module.exports = function (grunt) {
         'imagemagick-convert:tempPromoTileMarquee',
       ],
       promo: [
+        'imagemagick-convert:icon64',
         'imagemagick-convert:promoTileSmall',
         'imagemagick-convert:promoTileLarge',
         'imagemagick-convert:promoTileMarquee',
