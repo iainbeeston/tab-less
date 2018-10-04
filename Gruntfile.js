@@ -240,7 +240,7 @@ module.exports = function (grunt) {
     'imagemagick-convert': {
       icon19: icon({
         input: '<%= config.app %>/images/icon.svg',
-        output: '<%= config.dist %>/images/icon-38.png',
+        output: '<%= config.dist %>/images/icon-19.png',
         size: '19x19',
       }),
       icon38: icon({
