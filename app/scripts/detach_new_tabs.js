@@ -10,10 +10,12 @@ var detachTab = function(tab) {
   });
 };
 
-chrome.runtime.onInstalled.addListener(function() {
+var detachAllTabs = function() {
   chrome.tabs.query({}, function(tabs) {
     tabs.forEach(detachTab);
   });
-});
+};
 
+chrome.runtime.onInstalled.addListener(detachAllTabs);
+chrome.runtime.onStartup.addListener(detachAllTabs);
 chrome.tabs.onCreated.addListener(detachTab);

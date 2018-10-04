@@ -9,5 +9,6 @@ var updateBadge = function() {
 };
 
 chrome.runtime.onInstalled.addListener(updateBadge);
+chrome.runtime.onStartup.addListener(updateBadge);
 chrome.windows.onCreated.addListener(updateBadge);
 chrome.windows.onRemoved.addListener(updateBadge);

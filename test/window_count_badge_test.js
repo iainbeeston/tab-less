@@ -46,4 +46,12 @@
       sinon.assert.calledWithMatch(chrome.browserAction.setBadgeText, sinon.match.has('text', '1'));
     });
   });
+
+  describe('when the browser is started', function() {
+    it('sets the badge text to the number of windows', function() {
+      chrome.windows.getAll.yields([{id: 1}]);
+      chrome.runtime.onStartup.dispatch({});
+      sinon.assert.calledWithMatch(chrome.browserAction.setBadgeText, sinon.match.has('text', '1'));
+    });
+  });
 })();
