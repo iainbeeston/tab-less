@@ -238,10 +238,20 @@ module.exports = function (grunt) {
     },
 
     'imagemagick-convert': {
+      icon16: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-16.png',
+        size: '16x16',
+      }),
       icon19: icon({
         input: '<%= config.app %>/images/icon.svg',
         output: '<%= config.dist %>/images/icon-19.png',
         size: '19x19',
+      }),
+      icon32: icon({
+        input: '<%= config.app %>/images/icon.svg',
+        output: '<%= config.dist %>/images/icon-32.png',
+        size: '32x32',
       }),
       icon38: icon({
         input: '<%= config.app %>/images/icon.svg',
@@ -373,9 +383,12 @@ module.exports = function (grunt) {
       test: [
       ],
       icons: [
+        'imagemagick-convert:icon16',
         'imagemagick-convert:icon19',
+        'imagemagick-convert:icon32',
         'imagemagick-convert:icon38',
         'imagemagick-convert:icon48',
+        'imagemagick-convert:icon64',
         'imagemagick-convert:icon128'
       ],
       promoTemp: [
@@ -384,7 +397,6 @@ module.exports = function (grunt) {
         'imagemagick-convert:tempPromoTileMarquee',
       ],
       promo: [
-        'imagemagick-convert:icon64',
         'imagemagick-convert:promoTileSmall',
         'imagemagick-convert:promoTileLarge',
         'imagemagick-convert:promoTileMarquee',
