@@ -52,4 +52,14 @@
       sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('tabId', 2));
     });
   });
+
+  describe('when the browser is started', function() {
+    it('queries all tabs and moves them to a new window', function() {
+      chrome.tabs.query.yields([{ id: 1 }, { id: 2 }]);
+      chrome.windows.get.yields({});
+      chrome.runtime.onStartup.dispatch();
+      sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('tabId', 1));
+      sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('tabId', 2));
+    });
+  });
 })();
