@@ -18,8 +18,8 @@
       sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('tabId', 12345));
     });
 
-    it('does nothing if the tab is the first tab in that window', function() {
-      chrome.tabs.onCreated.dispatch({index: 0});
+    it('does nothing if the tab is the first tab is a new tab', function() {
+      chrome.tabs.onCreated.dispatch({url: "chrome://newtab/"});
       sinon.assert.notCalled(chrome.windows.get);
       sinon.assert.notCalled(chrome.windows.create);
     });
