@@ -30,7 +30,7 @@ var toggleActiveTab = function() {
       detachTab(tab, tabType);
     });
   });
-}
+};
 
 chrome.runtime.onInstalled.addListener(detachAllTabs);
 chrome.runtime.onStartup.addListener(detachAllTabs);
