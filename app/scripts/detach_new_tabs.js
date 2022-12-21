@@ -34,7 +34,15 @@ var toggleActiveTab = function() {
 
 chrome.runtime.onInstalled.addListener(detachAllTabs);
 chrome.runtime.onStartup.addListener(detachAllTabs);
-chrome.tabs.onCreated.addListener(detachTab);
+chrome.tabs.onCreated.addListener(function () {
+  chrome.windows.getCurrent(function(win) {
+    var windowType = win.type;
+    chrome.tabs.getAllInWindow(function(tabs) {
+      var tab = tabs.filter(function(tab) { return tab.active; })[0];
+      detachTab(tab, 'popup');
+    });
+  });
+});
 chrome.commands.onCommand.addListener(function (command){
   if (command === 'toggle-popup-mode') {
     toggleActiveTab();
