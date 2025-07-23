@@ -2,7 +2,7 @@ version: 2
 jobs:
    build:
      docker:
-       - image: circleci/node:6
+       - image: cimg/node:22.17
 
      steps:
        - checkout
