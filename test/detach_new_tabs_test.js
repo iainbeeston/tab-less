@@ -6,12 +6,12 @@
 
   require('../app/scripts/detach_new_tabs');
 
-  afterEach(function() {
-    chrome.windows.get.flush();
-    chrome.windows.create.flush();
-  });
-
   describe('when a new tab is created', function() {
+    afterEach(function() {
+      chrome.windows.get.flush();
+      chrome.windows.create.flush();
+    });
+
     it('moves the tab to a new window', function() {
       chrome.windows.get.yields({});
       chrome.tabs.onCreated.dispatch({id: 12345});

@@ -6,12 +6,12 @@
 
   require('../app/scripts/close_windows_browser_action');
 
-  afterEach(function() {
-    chrome.windows.getAll.flush();
-    chrome.windows.remove.flush();
-  });
-
   describe('when the browser action is clicked', function() {
+    afterEach(function() {
+      chrome.windows.getAll.flush();
+      chrome.windows.remove.flush();
+    });
+	
     it('closes every window', function() {
       chrome.windows.getAll.yields([{id: 1}, {id: 2}]);
       chrome.browserAction.onClicked.dispatch({});

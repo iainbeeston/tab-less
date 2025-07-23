@@ -1,7 +1,7 @@
 Tab-less
 ========
 
-[![CircleCI](https://img.shields.io/circleci/project/github/iainbeeston/tab-less/master.svg)]()
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iainbeeston/tab-less/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iainbeeston/tab-less/tree/master)
 [![Mozilla Add-on](https://img.shields.io/amo/v/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
 [![Mozilla Add-on](https://img.shields.io/amo/stars/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mdndkociaebjkggmhnemegoegnbfbgoo.svg)](https://chrome.google.com/webstore/detail/tab-less/mdndkociaebjkggmhnemegoegnbfbgoo)
