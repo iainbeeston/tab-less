@@ -2,11 +2,11 @@
 
 var closeOtherWindows = function(tab) {
   chrome.windows.getAll(function(windows) {
-    windows.forEach(function(window) {
+    for(var window of windows) {
       if (window.id !== tab.windowId && window.state !== 'minimized') {
         chrome.windows.remove(window.id);
       }
-    });
+    }
   });
 };
 

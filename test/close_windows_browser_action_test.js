@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 (function () {
   'use strict';
-  global.chrome = require('sinon-chrome/extensions');
+  globalThis.chrome = require('sinon-chrome/extensions');
   var sinon = require('sinon');
 
   require('../app/scripts/close_windows_browser_action');
@@ -11,7 +11,7 @@
       chrome.windows.getAll.flush();
       chrome.windows.remove.flush();
     });
-	
+
     it('closes every window', function() {
       chrome.windows.getAll.yields([{id: 1}, {id: 2}]);
       chrome.browserAction.onClicked.dispatch({});
