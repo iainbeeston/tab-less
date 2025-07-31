@@ -12,7 +12,9 @@ var detachTab = function(tab) {
 
 var detachAllTabs = function() {
   chrome.tabs.query({}, function(tabs) {
-    tabs.forEach(detachTab);
+    for(var tab of tabs) {
+      detachTab(tab);
+    }
   });
 };
 

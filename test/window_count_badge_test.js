@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 (function () {
   'use strict';
-  global.chrome = require('sinon-chrome/extensions');
+  globalThis.chrome = require('sinon-chrome/extensions');
   var sinon = require('sinon');
 
   require('../app/scripts/window_count_badge');

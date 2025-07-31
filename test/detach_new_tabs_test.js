@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 (function () {
   'use strict';
-  global.chrome = require('sinon-chrome/extensions');
+  globalThis.chrome = require('sinon-chrome/extensions');
   var sinon = require('sinon');
 
   require('../app/scripts/detach_new_tabs');
@@ -14,8 +14,8 @@
 
     it('moves the tab to a new window', function() {
       chrome.windows.get.yields({});
-      chrome.tabs.onCreated.dispatch({id: 12345});
-      sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('tabId', 12345));
+      chrome.tabs.onCreated.dispatch({id: 12_345});
+      sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('tabId', 12_345));
     });
 
     it('does nothing if the tab is the first tab in that window', function() {
@@ -37,8 +37,8 @@
     });
 
     it('gets the state from the original window and sets it on the new window', function() {
-      chrome.windows.get.withArgs(12345).yields({state: 'minimized'});
-      chrome.tabs.onCreated.dispatch({windowId: 12345});
+      chrome.windows.get.withArgs(12_345).yields({state: 'minimized'});
+      chrome.tabs.onCreated.dispatch({windowId: 12_345});
       sinon.assert.calledWithMatch(chrome.windows.create, sinon.match.has('state', 'minimized'));
     });
   });

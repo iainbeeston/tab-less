@@ -9,7 +9,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-function icon(args) {
+function icon(arguments_) {
   return {
     args: [
       '-density',
@@ -17,16 +17,16 @@ function icon(args) {
       '-background',
       'none',
       '-resize',
-      args.size,
+      arguments_.size,
       '-verbose',
-      args.input,
-      args.output,
+      arguments_.input,
+      arguments_.output,
     ],
     fatals: true
   };
 }
 
-function tempPromo(args) {
+function temporaryPromo(arguments_) {
   return {
     args: [
       '-density',
@@ -34,35 +34,35 @@ function tempPromo(args) {
       '-background',
       'white',
       '-resize',
-      args.size,
+      arguments_.size,
       '-verbose',
-      args.input,
-      args.output,
+      arguments_.input,
+      arguments_.output,
     ],
     fatals: true
   };
 }
 
-function finalPromo(args) {
+function finalPromo(arguments_) {
   return {
     args: [
       '-background',
       'white',
       '-resize',
-      args.size,
+      arguments_.size,
       '-gravity',
       'center',
       '-extent',
-      args.size,
+      arguments_.size,
       '-verbose',
-      args.input,
-      args.output
+      arguments_.input,
+      arguments_.output
     ],
     fatals: true
   };
 }
 
-module.exports = function (grunt) {
+module.exports = function configure(grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        livereload: 35729,
+        livereload: 35_729,
         // change this to '0.0.0.0' to access the server from outside
         hostname: 'localhost'
       },
@@ -138,8 +138,7 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      chrome: {
-      },
+      chrome: {},
       dist: {
         files: [{
           dot: true,
@@ -273,7 +272,7 @@ module.exports = function (grunt) {
         output: '<%= config.dist %>/images/icon-128.png',
         size: '128x128',
       }),
-      tempPromoTileSmall: tempPromo({
+      tempPromoTileSmall: temporaryPromo({
         input: '<%= config.app %>/images/promo_tile.svg',
         output: '<%= config.promo %>/temp/promo_tile_small.png',
         size: '440x280',
@@ -283,7 +282,7 @@ module.exports = function (grunt) {
         output: '<%= config.promo %>/chrome/promo_tile_small.png',
         size: '440x280',
       }),
-      tempPromoTileLarge: tempPromo({
+      tempPromoTileLarge: temporaryPromo({
         input: '<%= config.app %>/images/promo_tile.svg',
         output: '<%= config.promo %>/temp/promo_tile_large.png',
         size: '920x680',
@@ -293,7 +292,7 @@ module.exports = function (grunt) {
         output: '<%= config.promo %>/chrome/promo_tile_large.png',
         size: '920x680',
       }),
-      tempPromoTileMarquee: tempPromo({
+      tempPromoTileMarquee: temporaryPromo({
         input: '<%= config.app %>/images/promo_tile.svg',
         output: '<%= config.promo %>/temp/promo_tile_marquee.png',
         size: '1400x560',
