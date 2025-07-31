@@ -6,12 +6,12 @@
 
   require('../app/scripts/window_count_badge');
 
-  afterEach(function() {
-    chrome.windows.getAll.flush();
-    chrome.browserAction.setBadgeText.flush();
-  });
-
   describe('when a window is opened', function() {
+    afterEach(function() {
+      chrome.windows.getAll.flush();
+      chrome.browserAction.setBadgeText.flush();
+    });
+
     it('sets the badge text to 1 when there is one window', function() {
       chrome.windows.getAll.yields([{id: 1}]);
       chrome.windows.onCreated.dispatch({});
