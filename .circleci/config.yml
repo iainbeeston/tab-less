@@ -7,11 +7,6 @@ jobs:
      steps:
        - checkout
 
-       - run:
-           command: |
-             sudo apt-get update
-             sudo apt-get install imagemagick
-
        - restore_cache:
            key: dependencies-v1-{{ checksum "package-lock.json" }}
 
@@ -25,6 +20,9 @@ jobs:
 
        - run:
            command: npm run lint
+
+       - run:
+           command: npm run compile
 
        - run:
            command: npm test
