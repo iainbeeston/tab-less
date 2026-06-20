@@ -39,6 +39,8 @@ This is a [WXT](https://wxt.dev) browser extension written in TypeScript. After 
 * `npm run zip` — package the build as a zip for store submission
 * `npm run promo` — regenerate the Chrome Web Store promo tiles from `assets/promo_tile.svg`
 
+> **macOS note:** if you have libvips installed globally (e.g. via Homebrew `vips`), install with `SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install` so `sharp` uses its prebuilt binary instead of trying — and failing — to build from source.
+
 Contributing
 ------------
 

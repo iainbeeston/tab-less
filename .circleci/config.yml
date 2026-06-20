@@ -4,6 +4,10 @@ jobs:
      docker:
        - image: cimg/node:22.17
 
+     environment:
+       # Always use sharp's prebuilt binary; never build from a global libvips.
+       SHARP_IGNORE_GLOBAL_LIBVIPS: "1"
+
      steps:
        - checkout
 
