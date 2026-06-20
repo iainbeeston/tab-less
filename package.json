@@ -22,6 +22,7 @@
     "compile": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
+    "promo": "node scripts/promo.mjs",
     "postinstall": "wxt prepare"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "eslint-plugin-unicorn": "^60.0.0",
     "globals": "^15.15.0",
     "jiti": "^2.7.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.61.1",
     "vitest": "^3.2.6",

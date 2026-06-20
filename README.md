@@ -1,7 +1,7 @@
 Tab-less
 ========
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iainbeeston/tab-less/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iainbeeston/tab-less/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/iainbeeston/tab-less/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/iainbeeston/tab-less/tree/main)
 [![Mozilla Add-on](https://img.shields.io/amo/v/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
 [![Mozilla Add-on](https://img.shields.io/amo/stars/tab-less-addon.svg)](https://addons.mozilla.org/addon/tab-less-addon/)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/mdndkociaebjkggmhnemegoegnbfbgoo.svg)](https://chrome.google.com/webstore/detail/tab-less/mdndkociaebjkggmhnemegoegnbfbgoo)
@@ -25,6 +25,19 @@ Increasingly, browsers force tabs on you by default. It does not provide an opti
 1. Tab-less does not require any access to your browsing history at all (most extensions require access to your browsing history or the current page you're viewing).
 2. It's designed to be as light-weight and simplistic as possible.
 3. There's no magic, it just moves tabs to a new window, whenever they're opened (using the default settings for a new window).
+
+Development
+-----------
+
+This is a [WXT](https://wxt.dev) browser extension written in TypeScript. After cloning, run `npm install`, then use:
+
+* `npm run dev` — launch the extension in Chrome with hot reloading (`npm run dev:firefox` for Firefox)
+* `npm test` — run the unit tests with Vitest
+* `npm run lint` — lint with ESLint
+* `npm run compile` — type-check with TypeScript
+* `npm run build` — build the production extension into `.output/` (`npm run build:firefox` for Firefox)
+* `npm run zip` — package the build as a zip for store submission
+* `npm run promo` — regenerate the Chrome Web Store promo tiles from `assets/promo_tile.svg`
 
 Contributing
 ------------
