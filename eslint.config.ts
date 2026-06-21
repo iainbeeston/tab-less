@@ -34,6 +34,9 @@ export default tseslint.config(
         ...globals.node,
       },
     },
+    rules: {
+      'unicorn/no-process-exit': 'off',
+    },
   },
   {
     files: ['**/*.test.ts'],

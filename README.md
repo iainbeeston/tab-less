@@ -35,11 +35,28 @@ This is a [WXT](https://wxt.dev) browser extension written in TypeScript. After 
 * `npm test` — run the unit tests with Vitest
 * `npm run lint` — lint with ESLint
 * `npm run compile` — type-check with TypeScript
-* `npm run build` — build the production extension into `.output/` (`npm run build:firefox` for Firefox)
+* `npm run build` — build the production extension into `.output/`
 * `npm run zip` — package the build as a zip for store submission
+* `npm run analyze` — build and open a bundle-size visualisation
+* `npm run clean` — remove WXT's generated files and caches
 * `npm run promo` — regenerate the Chrome Web Store promo tiles from `assets/promo_tile.svg`
 
 > **macOS note:** if you have libvips installed globally (e.g. via Homebrew `vips`), install with `SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install` so `sharp` uses its prebuilt binary instead of trying — and failing — to build from source.
+
+### Building for other browsers
+
+WXT builds the same codebase for multiple browsers:
+
+* `npm run build:firefox` / `npm run zip:firefox` — Firefox
+* `npm run build:edge` / `npm run zip:edge` — Microsoft Edge
+* `npm run build:safari` — Safari. This produces a web-extension build in `.output/safari-mv3/`; turning it into a distributable Safari app extension still requires Apple's tooling on macOS — `xcrun safari-web-extension-converter .output/safari-mv3` (which opens an Xcode project) followed by signing with an Apple Developer account.
+
+### Publishing
+
+WXT can upload and submit new versions to the Chrome Web Store, Firefox Add-ons, and Edge Add-ons:
+
+1. `npm run submit:init` — one-time interactive setup that writes store API credentials to `.env.submit` (git-ignored).
+2. `npm run submit` — builds fresh zips for all three stores and submits them for review in a single command. Extra flags are forwarded to WXT, e.g. `npm run submit -- --dry-run` checks authentication without uploading, and `npm run submit -- --chrome-skip-submit-review` uploads without submitting.
 
 Contributing
 ------------
