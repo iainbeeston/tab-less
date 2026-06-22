@@ -1,4 +1,6 @@
-dist/
+.output/
+.wxt/
 node_modules/
-package/
 promo/
+.env.submit
+.env*.local
