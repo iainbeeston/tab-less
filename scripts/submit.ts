@@ -1,10 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-const { name, version } = JSON.parse(readFileSync('package.json', 'utf8'));
-const zip = (suffix) => `.output/${name}-${version}-${suffix}.zip`;
+const { name, version } = JSON.parse(readFileSync('package.json', 'utf8')) as {
+  name: string;
+  version: string;
+};
+const zip = (suffix: string) => `.output/${name}-${version}-${suffix}.zip`;
 
-const run = (wxtArguments) => {
+const run = (wxtArguments: string[]) => {
   const { status, error } = spawnSync('wxt', wxtArguments, { stdio: 'inherit' });
   if (error) {
     console.error(`Failed to run wxt: ${error.message}`);
