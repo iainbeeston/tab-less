@@ -18,13 +18,11 @@ const run = (wxtArguments: string[]) => {
 
 run(['zip']);
 run(['zip', '-b', 'firefox']);
-run(['zip', '-b', 'edge']);
 
 run([
   'submit',
   '--chrome-zip', zip('chrome'),
   '--firefox-zip', zip('firefox'),
   '--firefox-sources-zip', zip('sources'),
-  '--edge-zip', zip('edge'),
   ...process.argv.slice(2),
 ]);
