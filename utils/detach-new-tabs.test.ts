@@ -1,12 +1,17 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fakeBrowser } from 'wxt/testing';
+import type { Browser } from '#imports';
 import { registerDetachNewTabs } from '@/utils/detach-new-tabs';
 
-type FakeWindow = Awaited<ReturnType<typeof fakeBrowser.windows.get>>;
-type FakeTab = Awaited<ReturnType<typeof fakeBrowser.tabs.get>>;
+type FakeWindow = Browser.windows.Window;
+type FakeTab = Browser.tabs.Tab;
+type FakeBrowserWindow = Awaited<ReturnType<typeof fakeBrowser.windows.get>>;
+type FakeBrowserTab = Awaited<ReturnType<typeof fakeBrowser.tabs.get>>;
 
-const fakeTab = (properties: Partial<FakeTab> = {}): FakeTab => properties as FakeTab;
-const fakeWindow = (properties: Partial<FakeWindow> = {}): FakeWindow => properties as FakeWindow;
+const fakeTab = (properties: Partial<FakeTab> = {}): FakeBrowserTab =>
+  properties as FakeBrowserTab;
+const fakeWindow = (properties: Partial<FakeWindow> = {}): FakeBrowserWindow =>
+  properties as FakeBrowserWindow;
 
 describe('when a new tab is created', () => {
   beforeEach(() => {
@@ -51,6 +56,15 @@ describe('when a new tab is created', () => {
     expect(create).not.toHaveBeenCalled();
   });
 
+  it('does nothing if the tab has no window id', async () => {
+    vi.spyOn(fakeBrowser.windows, 'get').mockResolvedValue(fakeWindow());
+    const create = vi.spyOn(fakeBrowser.windows, 'create').mockResolvedValue(fakeWindow());
+
+    await fakeBrowser.tabs.onCreated.trigger(fakeTab({ id: 1 }));
+
+    expect(create).not.toHaveBeenCalled();
+  });
+
   it('reuses the incognito status from the original tab', async () => {
     vi.spyOn(fakeBrowser.windows, 'get').mockResolvedValue(fakeWindow());
     const create = vi.spyOn(fakeBrowser.windows, 'create').mockResolvedValue(fakeWindow());
@@ -91,6 +105,32 @@ describe('when the extension is installed', () => {
     await fakeBrowser.runtime.onInstalled.trigger({ reason: 'install', temporary: false });
 
     expect(create.mock.calls.map((call) => call[0]?.tabId)).toEqual([1, 2]);
+  });
+
+  it('does not detach the first tab in a window', async () => {
+    vi.spyOn(fakeBrowser.tabs, 'query').mockResolvedValue([
+      fakeTab({ id: 1, windowId: 100, index: 0 }),
+      fakeTab({ id: 2, windowId: 100, index: 1 }),
+    ]);
+    vi.spyOn(fakeBrowser.windows, 'get').mockResolvedValue(fakeWindow());
+    const create = vi.spyOn(fakeBrowser.windows, 'create').mockResolvedValue(fakeWindow());
+
+    await fakeBrowser.runtime.onInstalled.trigger({ reason: 'install', temporary: false });
+
+    expect(create.mock.calls.map((call) => call[0]?.tabId)).toEqual([2]);
+  });
+
+  it('does not detach a pinned tab', async () => {
+    vi.spyOn(fakeBrowser.tabs, 'query').mockResolvedValue([
+      fakeTab({ id: 1, windowId: 100, index: 1, pinned: true }),
+      fakeTab({ id: 2, windowId: 100, index: 2 }),
+    ]);
+    vi.spyOn(fakeBrowser.windows, 'get').mockResolvedValue(fakeWindow());
+    const create = vi.spyOn(fakeBrowser.windows, 'create').mockResolvedValue(fakeWindow());
+
+    await fakeBrowser.runtime.onInstalled.trigger({ reason: 'install', temporary: false });
+
+    expect(create.mock.calls.map((call) => call[0]?.tabId)).toEqual([2]);
   });
 
   it('still detaches the remaining tabs when one creation fails', async () => {

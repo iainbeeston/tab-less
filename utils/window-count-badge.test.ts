@@ -1,10 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fakeBrowser } from 'wxt/testing';
+import type { Browser } from '#imports';
 import { registerWindowCountBadge } from '@/utils/window-count-badge';
 
-type FakeWindow = Awaited<ReturnType<typeof fakeBrowser.windows.get>>;
+type FakeWindow = Browser.windows.Window;
+type FakeBrowserWindow = Awaited<ReturnType<typeof fakeBrowser.windows.get>>;
 
-const fakeWindow = (properties: Partial<FakeWindow> = {}): FakeWindow => properties as FakeWindow;
+const fakeWindow = (properties: Partial<FakeWindow> = {}): FakeBrowserWindow =>
+  properties as FakeBrowserWindow;
 
 describe('window count badge', () => {
   beforeEach(() => {
@@ -36,6 +39,15 @@ describe('window count badge', () => {
     await fakeBrowser.windows.onCreated.trigger(fakeWindow());
 
     expect(setBadgeText).toHaveBeenCalledWith({ text: '1' });
+  });
+
+  it('sets the badge text to 0 when there are no windows', async () => {
+    vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([]);
+    const setBadgeText = vi.spyOn(fakeBrowser.action, 'setBadgeText').mockResolvedValue(undefined);
+
+    await fakeBrowser.windows.onCreated.trigger(fakeWindow());
+
+    expect(setBadgeText).toHaveBeenCalledWith({ text: '0' });
   });
 
   it('sets the badge colour to a grey slightly lighter than the icon', async () => {
