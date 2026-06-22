@@ -6,23 +6,39 @@ const { name, version } = JSON.parse(readFileSync('package.json', 'utf8')) as {
   version: string;
 };
 const zip = (suffix: string) => `.output/${name}-${version}-${suffix}.zip`;
+const extraArguments = process.argv.slice(2);
 
-const run = (wxtArguments: string[]) => {
-  const { status, error } = spawnSync('wxt', wxtArguments, { stdio: 'inherit' });
+const run = (command: string, commandArguments: string[]) => {
+  const { status, error } = spawnSync(command, commandArguments, { stdio: 'inherit' });
   if (error) {
-    console.error(`Failed to run wxt: ${error.message}`);
+    console.error(`Failed to run ${command}: ${error.message}`);
     process.exit(1);
   }
   if (status !== 0) process.exit(status ?? 1);
 };
 
-run(['zip']);
-run(['zip', '-b', 'firefox']);
+run('wxt', ['zip']);
+run('wxt', ['zip', '-b', 'firefox']);
 
-run([
+run('wxt', [
   'submit',
   '--chrome-zip', zip('chrome'),
   '--firefox-zip', zip('firefox'),
   '--firefox-sources-zip', zip('sources'),
-  ...process.argv.slice(2),
+  ...extraArguments,
 ]);
+
+if (!extraArguments.includes('--dry-run')) {
+  const tag = `v${version}`;
+  const tagExists =
+    spawnSync('git', ['rev-parse', '-q', '--verify', `refs/tags/${tag}`]).status === 0;
+  if (tagExists) {
+    console.log(`Tag ${tag} already exists, skipping.`);
+  } else {
+    run('git', ['tag', '-a', tag, '-m', `Release ${tag}`]);
+    const push = spawnSync('git', ['push', 'origin', tag], { stdio: 'inherit' });
+    if (push.status !== 0) {
+      console.error(`Created tag ${tag} but failed to push it. Run: git push origin ${tag}`);
+    }
+  }
+}
