@@ -1,12 +1,17 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fakeBrowser } from 'wxt/testing';
+import type { Browser } from '#imports';
 import { registerCloseWindowsAction } from '@/utils/close-windows-action';
 
-type FakeWindow = Awaited<ReturnType<typeof fakeBrowser.windows.get>>;
-type FakeTab = Awaited<ReturnType<typeof fakeBrowser.tabs.get>>;
+type FakeWindow = Browser.windows.Window;
+type FakeTab = Browser.tabs.Tab;
+type FakeBrowserWindow = Awaited<ReturnType<typeof fakeBrowser.windows.get>>;
+type FakeBrowserTab = Awaited<ReturnType<typeof fakeBrowser.tabs.get>>;
 
-const fakeTab = (properties: Partial<FakeTab> = {}): FakeTab => properties as FakeTab;
-const fakeWindow = (properties: Partial<FakeWindow> = {}): FakeWindow => properties as FakeWindow;
+const fakeTab = (properties: Partial<FakeTab> = {}): FakeBrowserTab =>
+  properties as FakeBrowserTab;
+const fakeWindow = (properties: Partial<FakeWindow> = {}): FakeBrowserWindow =>
+  properties as FakeBrowserWindow;
 
 describe('when the browser action is clicked', () => {
   beforeEach(() => {
@@ -70,5 +75,38 @@ describe('when the browser action is clicked', () => {
     await fakeBrowser.action.onClicked.trigger(fakeTab(), undefined);
 
     expect(remove).toHaveBeenCalledWith(6);
+  });
+
+  it('only requests normal windows', async () => {
+    const getAll = vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([]);
+    vi.spyOn(fakeBrowser.windows, 'remove').mockResolvedValue(undefined);
+
+    await fakeBrowser.action.onClicked.trigger(fakeTab(), undefined);
+
+    expect(getAll).toHaveBeenCalledWith({ windowTypes: ['normal'] });
+  });
+
+  it('does not close a window without an id', async () => {
+    vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([fakeWindow()]);
+    const remove = vi.spyOn(fakeBrowser.windows, 'remove').mockResolvedValue(undefined);
+
+    await fakeBrowser.action.onClicked.trigger(fakeTab({ windowId: 7 }), undefined);
+
+    expect(remove).not.toHaveBeenCalled();
+  });
+
+  it('still closes the remaining windows when one removal fails', async () => {
+    vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([
+      fakeWindow({ id: 1 }),
+      fakeWindow({ id: 2 }),
+    ]);
+    const remove = vi
+      .spyOn(fakeBrowser.windows, 'remove')
+      .mockRejectedValueOnce(new Error('No window with id: 1.'))
+      .mockResolvedValue(undefined);
+
+    await fakeBrowser.action.onClicked.trigger(fakeTab(), undefined);
+
+    expect(remove).toHaveBeenCalledWith(2);
   });
 });

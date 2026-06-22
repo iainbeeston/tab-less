@@ -3,10 +3,11 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import unicorn from 'eslint-plugin-unicorn';
 import vitest from '@vitest/eslint-plugin';
+import { defineConfig } from 'eslint/config';
 
-export default tseslint.config(
+export default defineConfig(
   {
-    ignores: ['.wxt/', '.output/', 'node_modules/', 'promo/', 'dist/', 'package/'],
+    ignores: ['.wxt/', '.output/', 'node_modules/', 'promo/'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

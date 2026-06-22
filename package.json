@@ -8,10 +8,6 @@
     "type": "git",
     "url": "git://github.com/iainbeeston/tab-less.git"
   },
-  "engines": {
-    "node": "22.x",
-    "npm": "11.x"
-  },
   "scripts": {
     "dev": "wxt",
     "dev:firefox": "wxt -b firefox",
@@ -23,17 +19,18 @@
     "zip:firefox": "wxt zip -b firefox",
     "zip:edge": "wxt zip -b edge",
     "analyze": "wxt build --analyze",
-    "submit": "node scripts/submit.mjs",
+    "submit": "tsx scripts/submit.ts",
     "submit:init": "wxt submit init",
     "compile": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
-    "promo": "node scripts/promo.mjs",
+    "promo": "tsx scripts/promo.ts",
     "clean": "wxt clean",
     "postinstall": "wxt prepare"
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
+    "@types/node": "^22.20.0",
     "@vitest/eslint-plugin": "^1.6.20",
     "@wxt-dev/auto-icons": "^1.1.1",
     "eslint": "^9.31.0",
@@ -41,6 +38,7 @@
     "globals": "^15.15.0",
     "jiti": "^2.7.0",
     "sharp": "^0.34.5",
+    "tsx": "^4.22.4",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.61.1",
     "vitest": "^3.2.6",

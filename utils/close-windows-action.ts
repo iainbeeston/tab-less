@@ -6,10 +6,21 @@ export function registerCloseWindowsAction(): void {
 }
 
 async function closeOtherWindows(tab: Browser.tabs.Tab): Promise<void> {
-  const windows = await browser.windows.getAll();
-  for (const window of windows) {
-    if (window.id !== undefined && window.id !== tab.windowId && window.state !== 'minimized') {
-      await browser.windows.remove(window.id);
-    }
-  }
+  const windows = await browser.windows.getAll({ windowTypes: ['normal'] });
+  await Promise.all(
+    windows
+      .filter(
+        (window) =>
+          window.id !== undefined &&
+          window.id !== tab.windowId &&
+          window.state !== 'minimized',
+      )
+      .map(async (window) => {
+        try {
+          await browser.windows.remove(window.id!);
+        } catch (error) {
+          console.error(error);
+        }
+      }),
+  );
 }
