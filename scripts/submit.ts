@@ -1,5 +1,9 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
+
+if (existsSync('.env.submit')) {
+  process.loadEnvFile('.env.submit');
+}
 
 const { name, version } = JSON.parse(readFileSync('package.json', 'utf8')) as {
   name: string;
