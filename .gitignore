@@ -2,5 +2,5 @@
 .wxt/
 node_modules/
 promo/
-.env.submit
+.env.submit*
 .env*.local
