@@ -33,9 +33,3 @@ jobs:
 
        - run:
            command: npm run build
-
-experimental:
-  notify:
-    branches:
-      only:
-        - master
