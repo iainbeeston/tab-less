@@ -71,4 +71,28 @@ describe('when the browser action is clicked', () => {
 
     expect(remove).toHaveBeenCalledWith(6);
   });
+
+  it('only requests normal windows', async () => {
+    const getAll = vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([]);
+    vi.spyOn(fakeBrowser.windows, 'remove').mockResolvedValue(undefined);
+
+    await fakeBrowser.action.onClicked.trigger(fakeTab(), undefined);
+
+    expect(getAll).toHaveBeenCalledWith({ windowTypes: ['normal'] });
+  });
+
+  it('still closes the remaining windows when one removal fails', async () => {
+    vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([
+      fakeWindow({ id: 1 }),
+      fakeWindow({ id: 2 }),
+    ]);
+    const remove = vi
+      .spyOn(fakeBrowser.windows, 'remove')
+      .mockRejectedValueOnce(new Error('No window with id: 1.'))
+      .mockResolvedValue(undefined);
+
+    await fakeBrowser.action.onClicked.trigger(fakeTab(), undefined);
+
+    expect(remove).toHaveBeenCalledWith(2);
+  });
 });

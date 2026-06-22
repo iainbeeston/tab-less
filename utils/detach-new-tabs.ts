@@ -9,20 +9,52 @@ export function registerDetachNewTabs(): void {
 
 async function detachAllTabs(): Promise<void> {
   const tabs = await browser.tabs.query({});
-  for (const tab of tabs) {
-    await detachTab(tab);
-  }
+  const detachable = tabs.filter(
+    (tab) => tab.index !== 0 && !tab.pinned && tab.windowId !== undefined && tab.id !== undefined,
+  );
+
+  const windowIds = [...new Set(detachable.map((tab) => tab.windowId!))];
+  const windows = new Map(
+    await Promise.all(
+      windowIds.map(async (windowId) => {
+        try {
+          return [windowId, await browser.windows.get(windowId)] as const;
+        } catch (error) {
+          console.error(error);
+          return [windowId, undefined] as const;
+        }
+      }),
+    ),
+  );
+
+  await Promise.all(
+    detachable.map(async (tab) => {
+      try {
+        await browser.windows.create({
+          tabId: tab.id,
+          incognito: tab.incognito,
+          state: windows.get(tab.windowId!)?.state,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+  );
 }
 
 async function detachTab(tab: Browser.tabs.Tab): Promise<void> {
-  if (tab.index === 0 || tab.pinned || tab.windowId === undefined) {
+  if (tab.index === 0 || tab.pinned || tab.windowId === undefined || tab.id === undefined) {
     return;
   }
 
-  const oldWindow = await browser.windows.get(tab.windowId);
-  await browser.windows.create({
-    tabId: tab.id,
-    incognito: tab.incognito,
-    state: oldWindow.state,
-  });
+  try {
+    const oldWindow = await browser.windows.get(tab.windowId);
+    await browser.windows.create({
+      tabId: tab.id,
+      incognito: tab.incognito,
+      state: oldWindow.state,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }

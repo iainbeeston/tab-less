@@ -75,4 +75,13 @@ describe('window count badge', () => {
 
     expect(setBadgeText).toHaveBeenCalledWith({ text: '1' });
   });
+
+  it('only counts normal windows', async () => {
+    const getAll = vi.spyOn(fakeBrowser.windows, 'getAll').mockResolvedValue([fakeWindow()]);
+    vi.spyOn(fakeBrowser.action, 'setBadgeText').mockResolvedValue(undefined);
+
+    await fakeBrowser.windows.onCreated.trigger(fakeWindow());
+
+    expect(getAll).toHaveBeenCalledWith({ windowTypes: ['normal'] });
+  });
 });
