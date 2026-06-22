@@ -5,7 +5,11 @@ const { name, version } = JSON.parse(readFileSync('package.json', 'utf8'));
 const zip = (suffix) => `.output/${name}-${version}-${suffix}.zip`;
 
 const run = (wxtArguments) => {
-  const { status } = spawnSync('wxt', wxtArguments, { stdio: 'inherit' });
+  const { status, error } = spawnSync('wxt', wxtArguments, { stdio: 'inherit' });
+  if (error) {
+    console.error(`Failed to run wxt: ${error.message}`);
+    process.exit(1);
+  }
   if (status !== 0) process.exit(status ?? 1);
 };
 

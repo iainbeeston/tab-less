@@ -8,10 +8,6 @@
     "type": "git",
     "url": "git://github.com/iainbeeston/tab-less.git"
   },
-  "engines": {
-    "node": "22.x",
-    "npm": "11.x"
-  },
   "scripts": {
     "dev": "wxt",
     "dev:firefox": "wxt -b firefox",
